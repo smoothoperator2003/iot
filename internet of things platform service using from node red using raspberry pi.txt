@@ -1,0 +1,16 @@
+node red - open source
+flow based development tool
+run time environment
+used for wiring together devices, api and online services
+provides web based graphical user interface
+allows users to visually create, wire and deploy workflows known as flows
+
+* Node red installation on raspberry pi:
+
+1. update the computer
+  sudo apt-get update
+2. install node.js 6x version (not latest version 7)
+  curl -sL https://ded.nodesource.com/setup6x | sudo -E bash apt install nodejs
+3. confirm node.js version
+  sudo npm install -g -unsafe-perm node-red
+4. in browser -> {https://the-ip-address-returned}:1880/
