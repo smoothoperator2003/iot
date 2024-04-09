@@ -1,2 +1,16 @@
 arduino uno -> popular microcontroller board
-allows 
+allows makers, hobbyists, engineers
+creating electronic projects to real life
+basics of arduino uno
+how to interface it with arduino integrated development environment ide
+features of arduino uno board
+write and upload a simple programme
+blink led light
+
+hardware 
+1. arduino uno board
+2. usb cable for connecting arduino uno to a computer
+3. led (light emitting diode)
+4. 220 ohm resistor
+5. breadboard
+6. jumper wires
