@@ -1,0 +1,107 @@
+Hardware guide
+1. Stepper Motor
+2. Stepper motor driver
+3. Connecting wires
+
+stepper motor:
+electromagnetical device
+converts electrical pulses mechanical motion
+rotate continuously
+moves in descrete steps or increments
+ideal for applications that require precision control of position, speed and direction
+
+wiring up circuit
+
+1. Connect the IN1 pin of driver board to Physical Pin31 of raspberry pi
+2. Connect the IN2 pin of driver board to Physical Pin33 of raspberry pi
+3. Connect the IN3 pin of driver board to Physical Pin35 of raspberry pi
+4. Connect the IN4 pin of driver board to Physical Pin37 of raspberry pi
+5. Connect the + pin of driver board to and external 5v power supply
+6. Connect the — (ground) pin of driver board, the ground pin of power supply and the ground
+pin of raspberry pi (Physical Pin6 )to each other using a bread board.
+
+import RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BOARD)
+stepPin1 = 31
+stepPin2 = 33
+stepPin3 = 35
+stepPin4 = 37
+
+GPIO.setup(stepPin1, GPIO.OUT)
+GPIO.setup(stepPin2, GPIO.OUT)
+GPIO.setup(stepPin3, GPIO.OUT)
+GPIO.setup(stepPin4, GPIO.OUT)
+
+GPIO.output(stepPin1, False)
+GPIO.output(stepPin2, False)
+GPIO.output(stepPin3, False)
+GPIO.output(stepPin4, False)
+
+def singleStep(stepVal1, stepVal2, stepVal3, stepVal4):
+    GPIO.output(stepPin1, stepVal1)
+    GPIO.output(stepPin2, stepVal2)
+    GPIO.output(stepPin3, stepVal3)
+    GPIO.output(stepPin4, stepVal4)
+
+def clockWiseRotate(delay, steps):
+    for i in range(steps):
+        singleStep(1, 0, 0, 0)
+        time.sleep(delay)
+        singleStep(1, 1, 0, 0)
+        time.sleep(delay)
+        singleStep(0, 1, 0, 0)
+        time.sleep(delay)
+        singleStep(0, 1, 1, 0)
+        time.sleep(delay)
+        singleStep(0, 0, 1, 0)
+        time.sleep(delay)
+        singleStep(0, 0, 1, 1)
+        time.sleep(delay)
+        singleStep(0, 0, 0, 1)
+        time.sleep(delay)
+        singleStep(1, 0, 0, 1)
+        time.sleep(delay)
+
+def anticlockWiseRotate(delay, steps):
+    for i in range(steps):
+        singleStep(1, 0, 0, 1)
+        time.sleep(delay)
+        singleStep(0, 0, 0, 1)
+        time.sleep(delay)
+        singleStep(0, 0, 1, 1)
+        time.sleep(delay)
+        singleStep(0, 0, 1, 0)
+        time.sleep(delay)
+        singleStep(0, 1, 1, 0)
+        time.sleep(delay)
+        singleStep(0, 1, 0, 0)
+        time.sleep(delay)
+        singleStep(1, 1, 0, 0)
+        time.sleep(delay)
+        singleStep(1, 0, 0, 0)
+        time.sleep(delay)
+
+try:
+    while True:
+        delay = input("Enter delay between steps (in milliseconds): ")
+        steps1 = input("How many steps clockwise?: ")
+        steps2 = input("How many steps anticlockwise?: ")
+
+        try:
+            delay = int(delay)
+            steps1 = int(steps1)
+            steps2 = int(steps2)
+        except ValueError:
+            print("Invalid input. Please enter valid integers.")
+            continue
+
+        clockWiseRotate(delay / 1000.0, steps1)
+        anticlockWiseRotate(delay / 1000.0, steps2)
+
+except KeyboardInterrupt:
+    print("Script terminated by user.")
+
+finally:
+    GPIO.cleanup()
