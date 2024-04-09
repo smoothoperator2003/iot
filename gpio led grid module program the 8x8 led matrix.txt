@@ -1,0 +1,32 @@
+- LED-Matrix Display:
+  - Display device containing aligned light emitting diodes (LEDs) in matrix form.
+  - Used for displaying symbols, graphics, characters, alphabets, numerals.
+  - Available in various dimensions: 5x7, 8x8, 16x8, 128x16, 128x32, 128x64.
+  - Different colors: Red, Green, Yellow, Blue, Orange, White.
+
+- Construction:
+  - LEDs are wired together in rows and columns.
+  - Minimizes the number of pins required to drive them.
+  - Matrix pattern made in row anode-column cathode or row cathode-column anode pattern.
+
+- Row Anode-Column Cathode Pattern:
+  - Entire row serves as anode.
+  - All columns serve as cathode.
+
+- Row Cathode-Column Anode Pattern:
+  - Vice versa of row anode-column cathode pattern.
+
+hardware guides:
+
+8x8 led matrix module
+7219 driver board
+connecting wires
+
+software guide
+1. raspberry pi app menu -> select preference
+2. preference -> raspberry pi configuration
+3. raspberry pi configuration window -> interface
+4. enabled radio button front of spi to enable -> ok
+5. reboot raspberry pi after configuration
+
+command: sudo apt-get install python3-dev python3-pip
