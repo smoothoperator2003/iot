@@ -1,0 +1,59 @@
+hardware guide
+
+gpio pins
+led
+resistor
+connecting wires
+breadboard
+
+- LED (Light Emitting Diode):
+  - Semiconductor device emitting light with current flow.
+  - Commonly used in electronics for indicators, displays, or light sources.
+  - Available in various colors and sizes.
+  - Polarized with positive (anode) and negative (cathode) leads.
+
+- Resistor:
+  - Passive electronic component.
+  - Designed to limit/control electrical current in circuits.
+  - Provides resistance to electron flow.
+  - Used for adjusting voltage, limiting current, and protecting components.
+
+- Connecting Wires:
+  - Also known as jumper wires.
+  - Establish electrical connections between components/devices.
+  - Available in various lengths and colors.
+  - Facilitate organization on breadboards or PCBs.
+
+- Breadboard:
+  - Reusable solderless prototyping board.
+  - Creates temporary electrical connections.
+  - Consists of interconnected metal strips and holes.
+  - Allows quick and easy experimentation without soldering.
+  - Components can be easily rearranged during design and testing.
+
+sudo apt-get update
+sudo apt-get install python-dev
+sudo apt-get install python-rpi.gpio
+
+import RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(22, GPIO.OUT)
+GPIO.output(22, False)
+
+try:
+    while True:
+        GPIO.output(22, True)
+        print('LED ON')
+        time.sleep(1)
+        GPIO.output(22, False)
+        print('LED OFF')
+        time.sleep(1)
+finally:
+    GPIO.output(22, False)
+    GPIO.cleanup()
+time.sleep(1)
+GPIO.setup(25, GPIO.LOW)
+time.sleep(1)
+
