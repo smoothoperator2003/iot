@@ -29,3 +29,5 @@ Now join both of timestamp to the input inject button like this.
 And after this, Deploy it by click right sided red button ‘Deploy’.
 
 You can test your LED status as clicking on timestamp as ON and OFF.
+
+Connect the LED to Raspberry Pi like (pin 6 as ground and pin 15 as register).
