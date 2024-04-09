@@ -1,0 +1,20 @@
+run -> sudo raspi-config
+select down arrow -> select advance option
+down arrow to a6 spi
+select yes when it asks you to enable spi
+yes for kernel module
+right arrow -> finish button
+reboot -> yes
+
+switch off pi
+connect camera module to raspberry pi camera port 
+turn on pi
+enable software
+main menu -> raspberry pi configuration
+
+enable camera in software
+reboot pi again
+
+camera code in terminal:
+sudo respistill -o /home/pi/desktop/img1.jpg
+
